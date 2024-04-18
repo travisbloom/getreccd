@@ -1,0 +1,18 @@
+{
+  "version": "1",
+  "name": "recommendation-testing",
+  "abis": {
+    "recommendations": {
+      "path": "./abi.json"
+    }
+  },
+  "chains": ["base-sepolia"],
+  "instances": [
+    {
+      "abi": "recommendations",
+      "address": "0x17c864ee3aa63e84c848ad77580b1194b85a66df",
+      "startBlock": 8855442,
+      "chain": "base-sepolia"
+    }
+  ]
+}

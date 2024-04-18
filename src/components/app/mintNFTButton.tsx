@@ -17,11 +17,11 @@ export function MintNFTButton() {
           senderName: 'Sender Name',
           receiverAddress: '0x164cE5c1128aB7D891B29683e7e70Bb35AC9eEb2',
           receiverName: 'Receiver Name',
-          description: 'Sample Description',
+          description: `Sample Description from ${new Date().toISOString()}`,
         })
       }
     >
-      Confirm Transaction
+      Send Recommendation
     </TransactionButton>
   )
 }

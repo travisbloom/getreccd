@@ -16,7 +16,7 @@ const sortImports = {
 
 module.exports = {
   root: true,
-  ignorePatterns: ['**/**/*.generated.ts', '*.js'],
+  ignorePatterns: ['**/**/*.generated.ts', '**/**/generated.ts', '*.js'],
   extends: [
     'next',
     'next/core-web-vitals',
@@ -71,11 +71,6 @@ module.exports = {
           {
             name: 'lodash',
             message: 'Please use lodash-es instead.',
-          },
-          {
-            name: '@thirdweb-dev/react',
-            importNames: ['useAddress'],
-            message: 'Please use `useThirdwebAddress` instead.',
           },
           {
             name: 'react-use',

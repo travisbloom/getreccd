@@ -18,44 +18,32 @@
     "type": "error"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "approver", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "approver", "type": "address" }],
     "name": "ERC721InvalidApprover",
     "type": "error"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "operator", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }],
     "name": "ERC721InvalidOperator",
     "type": "error"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "owner", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
     "name": "ERC721InvalidOwner",
     "type": "error"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "receiver", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "receiver", "type": "address" }],
     "name": "ERC721InvalidReceiver",
     "type": "error"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "sender", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }],
     "name": "ERC721InvalidSender",
     "type": "error"
   },
   {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
     "name": "ERC721NonexistentToken",
     "type": "error"
   },
@@ -70,24 +58,9 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "owner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "approved",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      }
+      { "indexed": true, "internalType": "address", "name": "owner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "approved", "type": "address" },
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }
     ],
     "name": "Approval",
     "type": "event"
@@ -95,24 +68,9 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "owner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "operator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "approved",
-        "type": "bool"
-      }
+      { "indexed": true, "internalType": "address", "name": "owner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "operator", "type": "address" },
+      { "indexed": false, "internalType": "bool", "name": "approved", "type": "bool" }
     ],
     "name": "ApprovalForAll",
     "type": "event"
@@ -120,24 +78,30 @@
   {
     "anonymous": false,
     "inputs": [
+      { "indexed": false, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "from",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
+        "components": [
+          { "internalType": "address", "name": "senderAddress", "type": "address" },
+          { "internalType": "address", "name": "receiverAddress", "type": "address" },
+          { "internalType": "string", "name": "senderName", "type": "string" },
+          { "internalType": "string", "name": "receiverName", "type": "string" },
+          { "internalType": "string", "name": "description", "type": "string" }
+        ],
+        "indexed": false,
+        "internalType": "struct Recommendation.NFTData",
+        "name": "data",
+        "type": "tuple"
       }
+    ],
+    "name": "Recommended",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "from", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "to", "type": "address" },
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }
     ],
     "name": "Transfer",
     "type": "event"
@@ -153,30 +117,44 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "owner", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
     "name": "balanceOf",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
     "name": "getApproved",
     "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
     "name": "getNFTImage",
     "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
     "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
+    "name": "getRecommendationData",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "senderAddress", "type": "address" },
+          { "internalType": "address", "name": "receiverAddress", "type": "address" },
+          { "internalType": "string", "name": "senderName", "type": "string" },
+          { "internalType": "string", "name": "receiverName", "type": "string" },
+          { "internalType": "string", "name": "description", "type": "string" }
+        ],
+        "internalType": "struct Recommendation.NFTData",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -191,11 +169,7 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "receiverAddress",
-        "type": "address"
-      },
+      { "internalType": "address", "name": "receiverAddress", "type": "address" },
       { "internalType": "string", "name": "senderName", "type": "string" },
       { "internalType": "string", "name": "receiverName", "type": "string" },
       { "internalType": "string", "name": "description", "type": "string" }
@@ -217,11 +191,7 @@
     "name": "nftData",
     "outputs": [
       { "internalType": "address", "name": "senderAddress", "type": "address" },
-      {
-        "internalType": "address",
-        "name": "receiverAddress",
-        "type": "address"
-      },
+      { "internalType": "address", "name": "receiverAddress", "type": "address" },
       { "internalType": "string", "name": "senderName", "type": "string" },
       { "internalType": "string", "name": "receiverName", "type": "string" },
       { "internalType": "string", "name": "description", "type": "string" }
@@ -230,9 +200,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
     "name": "ownerOf",
     "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
@@ -272,9 +240,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }
-    ],
+    "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }],
     "name": "supportsInterface",
     "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
@@ -288,9 +254,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
     "name": "tokenURI",
     "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
     "stateMutability": "view",

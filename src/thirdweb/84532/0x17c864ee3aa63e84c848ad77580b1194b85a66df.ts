@@ -110,6 +110,29 @@ export function approvalForAllEvent(filters: ApprovalForAllEventFilters = {}) {
 }
 
 /**
+ * Creates an event object for the Recommended event.
+ * @returns The prepared event object.
+ * @example
+ * ```
+ * import { getContractEvents } from "thirdweb";
+ * import { recommendedEvent } from "TODO";
+ *
+ * const events = await getContractEvents({
+ * contract,
+ * events: [
+ *  recommendedEvent()
+ * ],
+ * });
+ * ```
+ */
+export function recommendedEvent() {
+  return prepareEvent({
+    signature:
+      'event Recommended(uint256 tokenId, (address senderAddress, address receiverAddress, string senderName, string receiverName, string description) data)',
+  })
+}
+
+/**
  * Represents the filters for the "Transfer" event.
  */
 export type TransferEventFilters = Partial<{
@@ -301,6 +324,84 @@ export async function getNFTImage(options: BaseTransactionOptions<GetNFTImagePar
           internalType: 'string',
           name: '',
           type: 'string',
+        },
+      ],
+    ],
+    params: [options.tokenId],
+  })
+}
+
+/**
+ * Represents the parameters for the "getRecommendationData" function.
+ */
+export type GetRecommendationDataParams = {
+  tokenId: AbiParameterToPrimitiveType<{
+    internalType: 'uint256'
+    name: 'tokenId'
+    type: 'uint256'
+  }>
+}
+
+/**
+ * Calls the "getRecommendationData" function on the contract.
+ * @param options - The options for the getRecommendationData function.
+ * @returns The parsed result of the function call.
+ * @example
+ * ```
+ * import { getRecommendationData } from "TODO";
+ *
+ * const result = await getRecommendationData({
+ *  tokenId: ...,
+ * });
+ *
+ * ```
+ */
+export async function getRecommendationData(
+  options: BaseTransactionOptions<GetRecommendationDataParams>,
+) {
+  return readContract({
+    contract: options.contract,
+    method: [
+      '0x2405d008',
+      [
+        {
+          internalType: 'uint256',
+          name: 'tokenId',
+          type: 'uint256',
+        },
+      ],
+      [
+        {
+          components: [
+            {
+              internalType: 'address',
+              name: 'senderAddress',
+              type: 'address',
+            },
+            {
+              internalType: 'address',
+              name: 'receiverAddress',
+              type: 'address',
+            },
+            {
+              internalType: 'string',
+              name: 'senderName',
+              type: 'string',
+            },
+            {
+              internalType: 'string',
+              name: 'receiverName',
+              type: 'string',
+            },
+            {
+              internalType: 'string',
+              name: 'description',
+              type: 'string',
+            },
+          ],
+          internalType: 'struct Recommendation.NFTData',
+          name: '',
+          type: 'tuple',
         },
       ],
     ],

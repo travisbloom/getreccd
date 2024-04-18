@@ -5,16 +5,16 @@
 import { ExtraErrorData } from '@sentry/integrations'
 import * as Sentry from '@sentry/nextjs'
 
+import { getIsSupportedBrowser, maybeDetectBrowser } from './maybeDetectBrowser'
+
 import { NEXT_PUBLIC_ENVIRONMENT } from '@/utils/shared/sharedEnv'
 import { toBool } from '@/utils/shared/toBool'
-
-import { getIsSupportedBrowser, maybeDetectBrowser } from './maybeDetectBrowser'
 
 const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN
 
 const COMMON_ERROR_MESSAGES_TO_GROUP = ['No internet connection detected']
 
-const COMMON_TRANSACTION_NAMES_TO_GROUP = ['node_modules/@thirdweb-dev']
+const COMMON_TRANSACTION_NAMES_TO_GROUP = ['node_modules/thirdweb']
 
 const isSupportedBrowser = getIsSupportedBrowser(maybeDetectBrowser())
 
