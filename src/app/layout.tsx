@@ -56,9 +56,7 @@ export default function Layout({ children }: PageProps & { children: React.React
         <TopLevelClientLogic>
           <FullHeight.Container>
             <Navbar />
-            <FullHeight.Content>
-              <div className="mt-10">{children}</div>
-            </FullHeight.Content>
+            <FullHeight.Content>{children}</FullHeight.Content>
             <Footer />
           </FullHeight.Container>
         </TopLevelClientLogic>

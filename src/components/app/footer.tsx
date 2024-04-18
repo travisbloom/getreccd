@@ -1,3 +1,3 @@
 export function Footer() {
-  return <footer>TODO FOOTER</footer>
+  return <footer>{/* TODO FOOTER */}</footer>
 }

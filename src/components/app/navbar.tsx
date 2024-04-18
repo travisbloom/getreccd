@@ -1,3 +1,3 @@
 export function Navbar() {
-  return <nav>TODO NAVBAR</nav>
+  return <nav>{/* TODO NAVBAR */}</nav>
 }
