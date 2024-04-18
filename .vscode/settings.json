@@ -1,0 +1,39 @@
+/* spell-checker: disable */
+{
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "editor.scrollBeyondLastLine": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    "cn\\(([^)]*)\\)",
+    "'([^']*)'",
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    "twFormat\\(([^)]*)\\)"
+  ],
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "search.exclude": {
+    ".next": true,
+    "./src/bin/localCache": true,
+    "**/**.svg": true
+  },
+  "files.watcherExclude": {},
+  "[html]": {
+    "editor.formatOnSave": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "cSpell.ignorePaths": ["**/*.json"],
+  "cSpell.words": ["reccd", "Thirdweb"],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
