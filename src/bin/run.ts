@@ -1,5 +1,5 @@
 import { runBin } from '@/bin/runBin'
-import { getRecentRecommendations } from '@/data/subgraphs/GetRecentRecommendations'
+import { getRecentRecommendations } from '@/data/subgraphs/getRecentRecommendations'
 import { prettyLog } from '@/utils/shared/prettyLog'
 
 async function run() {

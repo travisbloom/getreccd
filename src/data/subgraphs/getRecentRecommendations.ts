@@ -14,5 +14,5 @@ export async function getRecentRecommendations() {
       }
     }
   `)
-  return results.recent as Array<Required<GetRecentRecommendationsQuery['recommendeds'][0]>>
+  return results.recent as Array<Required<GetRecentRecommendationsQuery['recent'][0]>>
 }

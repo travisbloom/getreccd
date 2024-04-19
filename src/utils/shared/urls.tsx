@@ -27,6 +27,6 @@ export const urls = {
   home: () => '/',
   profile: (address: string) => `/profile/${address}`,
   recommendation: (tokenId: number) => `/recommendation/${tokenId}`,
-  mockNFTImage: (props: RecommendationNFTMetadata) =>
-    `/nft/recommendation/v1/mock/${encodeObjectForUrl(props)}`,
+  mockNFTImage: (props: Omit<RecommendationNFTMetadata, 'tokenId'>) =>
+    `/nft/recommendation/v1/mock/${encodeObjectForUrl({ ...props, tokenId: 1 })}`,
 }
