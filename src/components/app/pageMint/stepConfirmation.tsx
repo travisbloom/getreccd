@@ -18,7 +18,7 @@ export function StepConfirmation({ data }: { data: RecommendationNFTSubmissionMe
         Recommendation sent!
       </h1>
       <h2 className="mb-6 text-muted-foreground">
-        You sent a recommendation to {data.receiverAddress}. The NFT will arrive in their wallet
+        You sent a recommendation to {data.receiverName}. The NFT will arrive in their wallet
         shortly.
       </h2>
       <Button asChild>

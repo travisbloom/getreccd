@@ -34,7 +34,7 @@ export function StepDescription({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
         <div>
           <FormField
             control={form.control}

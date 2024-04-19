@@ -22,7 +22,7 @@ export function StepMint({
   const activeAccount = useActiveAccountNormalized()
   const [isSubmitting, setIsSubmitting] = useState(false)
   return (
-    <div className="text-center">
+    <div className="w-full text-center">
       <div className="mx-auto h-72 w-72 overflow-hidden rounded-xl">
         <NextImage
           className="h-72 w-72"

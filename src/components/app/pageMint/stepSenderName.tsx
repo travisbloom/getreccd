@@ -34,7 +34,7 @@ export function StepSenderName({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
         <div>
           <FormField
             control={form.control}
@@ -46,7 +46,7 @@ export function StepSenderName({
                     Enter your name
                   </h1>
                   <h2 className="mb-6 text-muted-foreground">
-                    Tell us a bit about who you are so we know who's sending the recommendation.
+                    So they know who's giving them a shout out.
                   </h2>
                 </FormLabel>
                 <FormControl className="mb-2">

@@ -17,6 +17,9 @@ export function SignInButton(props: Partial<ConnectButtonProps>) {
       <ConnectButton
         chain={ACTIVE_CHAIN}
         client={thirdwebClient}
+        connectButton={{
+          className: 'max-sm:!p-1 max-sm:!text-md',
+        }}
         connectModal={{
           size: 'compact',
           titleIcon: 'https://www.getreccd.com/favicon.ico',
@@ -37,6 +40,9 @@ export function SignInButton(props: Partial<ConnectButtonProps>) {
             ) : (
               <div></div>
             ),
+        }}
+        switchButton={{
+          className: 'max-sm:!p-1 max-sm:!text-md',
         }}
         theme={'dark'}
         wallets={wallets}

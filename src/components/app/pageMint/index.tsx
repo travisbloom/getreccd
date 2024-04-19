@@ -69,7 +69,7 @@ export function PageMintForms() {
 
 export function PageMint() {
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-1 items-center">
+    <div className="mx-auto flex w-full max-w-3xl flex-1 items-center">
       <PageMintForms />
     </div>
   )
