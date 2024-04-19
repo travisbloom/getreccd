@@ -54,42 +54,50 @@ export async function generateNFTImage(metadata: RecommendationNFTMetadata) {
   })
   const senderName = senderEnsData?.ensName || metadata.senderName || ''
   const receiverName = receiverEnsData?.ensName || metadata.receiverName || ''
-  return new ImageResponse(
-    (
-      <div tw="flex bg-[#6d28d9] text-white p-8 w-full h-full flex-col justify-center items-center">
-        <div tw="flex flex-col items-center">
-          <div tw="flex">{logo}</div>
-          <div tw="flex mt-20 mb-20">
-            <div tw="relative left-5 flex">
-              {senderAvatar ? (
-                <div tw="overflow-hidden rounded-full flex">
-                  <img alt="logo" src={senderAvatar} tw="w-52 h-52" />
-                </div>
-              ) : (
-                <div tw="w-52 flex h-52 bg-slate-300 overflow-hidden rounded-full border border-slate-800 items-center justify-center">
-                  <div tw="text-black text-5xl">{senderName.slice(0, 1).toUpperCase()}</div>
-                </div>
-              )}
-            </div>
+  function render(allowENSAvatar: boolean) {
+    return new ImageResponse(
+      (
+        <div tw="flex bg-[#6d28d9] text-white p-8 w-full h-full flex-col justify-center items-center">
+          <div tw="flex flex-col items-center">
+            <div tw="flex">{logo}</div>
+            <div tw="flex mt-20 mb-20">
+              <div tw="relative left-5 flex">
+                {allowENSAvatar && senderAvatar ? (
+                  <div tw="overflow-hidden rounded-full flex">
+                    <img alt="logo" src={senderAvatar} tw="w-52 h-52" />
+                  </div>
+                ) : (
+                  <div tw="w-52 flex h-52 bg-slate-300 overflow-hidden rounded-full border border-slate-800 items-center justify-center">
+                    <div tw="text-black text-5xl">{senderName.slice(0, 1).toUpperCase()}</div>
+                  </div>
+                )}
+              </div>
 
-            <div tw="relative left-right flex">
-              {receiverAvatar ? (
-                <div tw="overflow-hidden rounded-full flex">
-                  <img alt="logo" src={receiverAvatar} tw="w-52 h-52" />
-                </div>
-              ) : (
-                <div tw="w-52 flex h-52 bg-slate-300 overflow-hidden rounded-full border border-slate-800 items-center justify-center">
-                  <div tw="text-black text-5xl">{receiverName.slice(0, 1).toUpperCase()}</div>
-                </div>
-              )}
+              <div tw="relative left-right flex">
+                {allowENSAvatar && receiverAvatar ? (
+                  <div tw="overflow-hidden rounded-full flex">
+                    <img alt="logo" src={receiverAvatar} tw="w-52 h-52" />
+                  </div>
+                ) : (
+                  <div tw="w-52 flex h-52 bg-slate-300 overflow-hidden rounded-full border border-slate-800 items-center justify-center">
+                    <div tw="text-black text-5xl">{receiverName.slice(0, 1).toUpperCase()}</div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-          <div tw="flex flex-col items-center text-center">
-            <div tw="text-3xl">{`${senderName} recommended ${receiverName}`}</div>
+            <div tw="flex flex-col items-center text-center">
+              <div tw="text-3xl">{`${senderName} recommended ${receiverName}`}</div>
+            </div>
           </div>
         </div>
-      </div>
-    ),
-    RECOMMENDATION_NFT_IMAGE_DIMENSIONS,
-  )
+      ),
+      RECOMMENDATION_NFT_IMAGE_DIMENSIONS,
+    )
+  }
+  try {
+    return render(true)
+  } catch (e) {
+    Sentry.captureException(e)
+    return render(false)
+  }
 }
