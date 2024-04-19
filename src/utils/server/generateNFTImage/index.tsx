@@ -42,8 +42,8 @@ export async function generateNFTImage(metadata: RecommendationNFTMetadata) {
     metadata.receiverAddress,
   ])
   logger.debug('ens data returned')
-  const senderEnsData = results[metadata.senderAddress] as UserENSData | null
-  const receiverEnsData = results[metadata.receiverAddress] as UserENSData | null
+  const senderEnsData = (results[metadata.senderAddress] || null) as UserENSData | null
+  const receiverEnsData = (results[metadata.receiverAddress] || null) as UserENSData | null
   const [senderAvatar, receiverAvatar] = await Promise.all([
     parseEnsAvatarUrl(senderEnsData?.ensAvatarUrl),
     parseEnsAvatarUrl(receiverEnsData?.ensAvatarUrl),

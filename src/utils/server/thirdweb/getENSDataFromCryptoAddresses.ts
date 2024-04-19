@@ -8,8 +8,7 @@ import { stringToEthereumAddress } from '@/utils/shared/stringToEthereumAddress'
 const client = ethRPCClient
 
 export interface UserENSData {
-  cryptoAddress: string
-  ensName: string | null
+  ensName: string
   ensAvatarUrl: string | null
 }
 
@@ -28,7 +27,7 @@ export async function getENSDataMapFromCryptoAddresses(
   const addressesWithENS = nameResult
     .map((result, index) => ({
       cryptoAddress: addresses[index],
-      ensName: result,
+      ensName: result!,
     }))
     .filter(({ ensName }) => ensName)
   const records = await Promise.all(
@@ -42,7 +41,6 @@ export async function getENSDataMapFromCryptoAddresses(
     (acc, { cryptoAddress, ensName }, index) => {
       const avatar = records[index]
       acc[cryptoAddress] = {
-        cryptoAddress,
         ensName,
         ensAvatarUrl: avatar ? formatENSAvatar(avatar) : null,
       }
@@ -50,4 +48,12 @@ export async function getENSDataMapFromCryptoAddresses(
     },
     {} as Record<string, UserENSData>,
   )
+}
+
+export async function getENSDataFromCryptoAddress(address: string): Promise<UserENSData | null> {
+  const results = await getENSDataMapFromCryptoAddresses([address])
+  if (results[address]) {
+    return results[address]
+  }
+  return null
 }

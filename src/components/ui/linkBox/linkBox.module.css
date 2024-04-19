@@ -1,0 +1,33 @@
+.overlay {
+  position: static;
+  @apply text-fontcolor;
+}
+
+.overlay::before {
+  content: '';
+  cursor: inherit;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.base {
+  position: relative;
+  cursor: pointer;
+}
+
+.base a[href]:not(.overlay),
+.base div[data-link-box-subject],
+.base abbr[title] {
+  position: relative;
+  z-index: 1;
+}
+
+.base:hover a[href]:not(.overlay),
+.base:hover abbr[data-link-box-subject] {
+  text-decoration: underline;
+}

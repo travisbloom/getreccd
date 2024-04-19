@@ -1,5 +1,4 @@
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql'
-
 export type Maybe<T> = T | null | undefined
 export type InputMaybe<T> = T | null | undefined
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -873,11 +872,37 @@ export enum _SubgraphErrorPolicy_ {
   DENY = 'deny',
 }
 
-export type GetRecentTransactionsQueryVariables = Exact<{ [key: string]: never }>
+export type GetRecentRecommendationsQueryVariables = Exact<{ [key: string]: never }>
 
-export type GetRecentTransactionsQuery = {
+export type GetRecentRecommendationsQuery = {
   __typename?: 'Query'
-  recommendeds: Array<{
+  recent: Array<{
+    __typename?: 'Recommended'
+    tokenId: number | null | undefined
+    data_senderName: string | null | undefined
+    data_description: string | null | undefined
+    data_receiverName: string | null | undefined
+    data_senderAddress: string | null | undefined
+    data_receiverAddress: string | null | undefined
+  }>
+}
+
+export type GetUsersRecommendationsQueryVariables = Exact<{
+  userAddress: Scalars['String']['input']
+}>
+
+export type GetUsersRecommendationsQuery = {
+  __typename?: 'Query'
+  recommendationsSent: Array<{
+    __typename?: 'Recommended'
+    tokenId: number | null | undefined
+    data_senderName: string | null | undefined
+    data_description: string | null | undefined
+    data_receiverName: string | null | undefined
+    data_senderAddress: string | null | undefined
+    data_receiverAddress: string | null | undefined
+  }>
+  recommendationsReceived: Array<{
     __typename?: 'Recommended'
     tokenId: number | null | undefined
     data_senderName: string | null | undefined

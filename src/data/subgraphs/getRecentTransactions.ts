@@ -1,10 +1,10 @@
 import { fetchFromGoldSky } from '@/data/subgraphs/fetchFromGoldSky'
-import { GetRecentTransactionsQuery } from '@/types/subgraphs/generated'
+import { GetRecentRecommendationsQuery } from '@/types/subgraphs/generated'
 
-export async function getRecentTransactions() {
-  const results = await fetchFromGoldSky<GetRecentTransactionsQuery>(/* GraphQL */ `
-    query GetRecentTransactions {
-      recommendeds(orderBy: timestamp_, orderDirection: desc) {
+export async function getRecentRecommendations() {
+  const results = await fetchFromGoldSky<GetRecentRecommendationsQuery>(/* GraphQL */ `
+    query GetRecentRecommendations {
+      recent: recommendeds(orderBy: timestamp_, orderDirection: desc, first: 10) {
         tokenId
         data_senderName
         data_description
@@ -14,5 +14,5 @@ export async function getRecentTransactions() {
       }
     }
   `)
-  return results.recommendeds as Array<Required<GetRecentTransactionsQuery['recommendeds'][0]>>
+  return results.recent as Array<Required<GetRecentRecommendationsQuery['recommendeds'][0]>>
 }

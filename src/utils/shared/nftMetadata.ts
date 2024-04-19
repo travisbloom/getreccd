@@ -9,6 +9,7 @@ export type RecommendationNFTSubmissionMetadata = {
 
 export type RecommendationNFTMetadata = RecommendationNFTSubmissionMetadata & {
   senderAddress: string
+  tokenId: number
 }
 
 export const RECOMMENDATION_NFT_IMAGE_DIMENSIONS = {
