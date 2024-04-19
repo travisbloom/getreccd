@@ -24,6 +24,7 @@ export const fullUrl = (path: string) => {
 
 export const urls = {
   mint: () => '/mint',
+  home: () => '/',
   profile: (address: string) => `/profile/${address}`,
   mockNFTImage: (props: RecommendationNFTMetadata) =>
     fullUrl(`/nft/recommendation/v1/mock/${encodeObjectForUrl(props)}`),
