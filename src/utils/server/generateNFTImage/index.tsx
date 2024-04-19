@@ -36,21 +36,21 @@ async function parseEnsAvatarUrl(url: string | null | undefined) {
 const logger = getLogger('generateNFTImage')
 
 export async function generateNFTImage(metadata: RecommendationNFTMetadata) {
-  logger.debug('triggered', metadata)
+  logger.info('triggered', metadata)
   const results = await getENSDataMapFromCryptoAddresses([
     metadata.senderAddress,
     metadata.receiverAddress,
   ])
-  logger.debug('ens data returned')
+  logger.info('ens data returned')
   const senderEnsData = (results[metadata.senderAddress] || null) as UserENSData | null
   const receiverEnsData = (results[metadata.receiverAddress] || null) as UserENSData | null
   const [senderAvatar, receiverAvatar] = await Promise.all([
     parseEnsAvatarUrl(senderEnsData?.ensAvatarUrl),
     parseEnsAvatarUrl(receiverEnsData?.ensAvatarUrl),
   ])
-  logger.debug('ens image buffer returned', {
-    senderAvatar: !!senderAvatar,
-    receiverAvatar: !!receiverAvatar,
+  logger.info('ens image buffer returned', {
+    senderAvatar: senderEnsData?.ensAvatarUrl,
+    receiverAvatar: receiverEnsData?.ensAvatarUrl,
   })
   const senderName = senderEnsData?.ensName || metadata.senderName || ''
   const receiverName = receiverEnsData?.ensName || metadata.receiverName || ''
