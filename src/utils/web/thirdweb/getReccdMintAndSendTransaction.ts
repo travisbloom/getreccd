@@ -3,14 +3,15 @@ import { getContract } from 'thirdweb'
 import {
   mintAndSend,
   MintAndSendParams,
-} from '@/thirdweb/84532/0x17c864ee3aa63e84c848ad77580b1194b85a66df'
-import { NEXT_PUBLIC_ENVIRONMENT } from '@/utils/shared/sharedEnv'
+} from '@/thirdweb/8453/0x71b6f46fb5c9529098bfeb3afc710afe81460ac7'
+import { mintAndSend as testingMintAndSend } from '@/thirdweb/84532/0x17c864ee3aa63e84c848ad77580b1194b85a66df'
+import { CHAIN_ENVIRONMENT, NEXT_PUBLIC_ENVIRONMENT } from '@/utils/shared/sharedEnv'
 import { ACTIVE_CHAIN } from '@/utils/web/activeChain'
 import { thirdwebClient } from '@/utils/web/thirdweb/client'
 
 function getContractAddress() {
-  if (NEXT_PUBLIC_ENVIRONMENT === 'production') {
-    throw new Error('Need to deploy prod contract')
+  if (CHAIN_ENVIRONMENT === 'production') {
+    return '0x71B6f46Fb5c9529098bfEb3afC710aFE81460AC7'
   }
   return '0x17c864EE3aA63E84C848AD77580B1194b85a66Df'
 }
@@ -25,7 +26,13 @@ function getReccdContract() {
 }
 
 export function getReccdMintAndSendTransaction(params: MintAndSendParams) {
-  return mintAndSend({
+  if (CHAIN_ENVIRONMENT === 'production') {
+    return mintAndSend({
+      ...params,
+      contract: getReccdContract(),
+    })
+  }
+  return testingMintAndSend({
     ...params,
     contract: getReccdContract(),
   })

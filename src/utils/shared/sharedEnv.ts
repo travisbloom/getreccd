@@ -30,3 +30,5 @@ if (initialEnv === 'testing') {
   }
 }
 export const NEXT_PUBLIC_ENVIRONMENT = initialEnv
+
+export const CHAIN_ENVIRONMENT = NEXT_PUBLIC_ENVIRONMENT === 'production' ? 'production' : 'testing'

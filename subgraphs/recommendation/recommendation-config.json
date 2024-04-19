@@ -1,0 +1,18 @@
+{
+  "version": "1",
+  "name": "recommendation",
+  "abis": {
+    "recommendations": {
+      "path": "./abi.json"
+    }
+  },
+  "chains": ["base"],
+  "instances": [
+    {
+      "abi": "recommendations",
+      "address": "0x71B6f46Fb5c9529098bfEb3afC710aFE81460AC7",
+      "startBlock": 13348595,
+      "chain": "base"
+    }
+  ]
+}
