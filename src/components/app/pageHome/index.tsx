@@ -8,7 +8,7 @@ export async function PageHome() {
       <div className="space-y-6">
         <h1 className="font-mono text-3xl font-bold sm:text-4xl">Send onchain recommendations</h1>
         <h2 className="text-muted-foreground">
-          Endorse the people you respect onchain by sending them Proof-Of-Recommendation NFT.
+          Endorse the people you respect onchain by sending them a Proof-Of-Recommendation NFT.
         </h2>
         <div className="flex gap-4">
           <Button asChild>
