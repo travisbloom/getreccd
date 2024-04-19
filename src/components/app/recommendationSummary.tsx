@@ -11,11 +11,22 @@ export function RecommendationSummary({
 }) {
   return (
     <LinkBox className="flex items-center gap-4">
-      <MaybeENSAvatar
-        ensData={recommendation.senderENSData}
-        sharedClassName="w-16 h-16 text-xs"
-        userAddress={recommendation.senderAddress}
-      />
+      <div className="flex">
+        <div className="relative left-2">
+          <MaybeENSAvatar
+            ensData={recommendation.senderENSData}
+            sharedClassName="w-16 h-16 text-xs relative"
+            userAddress={recommendation.senderAddress}
+          />
+        </div>
+        <div className="relative right-2">
+          <MaybeENSAvatar
+            ensData={recommendation.receiverENSData}
+            sharedClassName="w-16 h-16 text-xs"
+            userAddress={recommendation.receiverAddress}
+          />
+        </div>
+      </div>
       <div>
         <div className="font-bold">
           {recommendation.senderENSData?.ensName || recommendation.senderName}

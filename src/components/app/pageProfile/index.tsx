@@ -19,7 +19,7 @@ export async function PageProfile({ userAddress }: { userAddress: string }) {
         </h1>
       </div>
       <MaybeRecentMint recommendationsSent={recommendationsSent} />
-      <div className="mx-auto grid max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
+      <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <h2 className="mb-4 border-b-2 pb-4 text-lg">Sent</h2>
           {recommendationsSent.length ? (
