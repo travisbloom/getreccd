@@ -1,14 +1,14 @@
 'use client'
 import { Check } from 'lucide-react'
-import { useActiveAccount } from 'thirdweb/react'
 
 import { Button } from '@/components/ui/button'
 import { InternalLink } from '@/components/ui/link'
+import { useActiveAccountNormalized } from '@/hooks/useActiveAccountNormalized'
 import { RecommendationNFTSubmissionMetadata } from '@/utils/shared/nftMetadata'
 import { urls } from '@/utils/shared/urls'
 
 export function StepConfirmation({ data }: { data: RecommendationNFTSubmissionMetadata }) {
-  const activeAccount = useActiveAccount()
+  const activeAccount = useActiveAccountNormalized()
   return (
     <div className="text-center">
       <div className="mx-auto flex h-72 w-72 items-center justify-center overflow-hidden rounded-full bg-primary">

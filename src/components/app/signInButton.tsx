@@ -2,24 +2,46 @@
 import { ConnectButton, ConnectButtonProps } from 'thirdweb/react'
 import { createWallet, walletConnect } from 'thirdweb/wallets'
 
+import { InternalLink } from '@/components/ui/link'
+import { useActiveAccountNormalized } from '@/hooks/useActiveAccountNormalized'
 import { thirdwebClient } from '@/utils/shared/thirdweb/client'
+import { urls } from '@/utils/shared/urls'
 import { ACTIVE_CHAIN } from '@/utils/web/activeChain'
 
 const wallets = [createWallet('com.coinbase.wallet'), createWallet('io.metamask'), walletConnect()]
 
 export function SignInButton(props: Partial<ConnectButtonProps>) {
+  const account = useActiveAccountNormalized()
   return (
-    <ConnectButton
-      chain={ACTIVE_CHAIN}
-      client={thirdwebClient}
-      connectModal={{
-        size: 'compact',
-        titleIcon: 'https://www.getreccd.com/favicon.ico',
-        showThirdwebBranding: false,
-      }}
-      theme={'dark'}
-      wallets={wallets}
-      {...props}
-    />
+    <div>
+      <ConnectButton
+        chain={ACTIVE_CHAIN}
+        client={thirdwebClient}
+        connectModal={{
+          size: 'compact',
+          titleIcon: 'https://www.getreccd.com/favicon.ico',
+          showThirdwebBranding: false,
+        }}
+        detailsModal={{
+          hideSwitchToPersonalWallet: true,
+          footer: footerProps =>
+            account ? (
+              <p className="ml-[48px] mt-2">
+                <InternalLink
+                  href={urls.profile(account.address)}
+                  onClick={() => footerProps.close()}
+                >
+                  View Recc'd Profile
+                </InternalLink>
+              </p>
+            ) : (
+              <div></div>
+            ),
+        }}
+        theme={'dark'}
+        wallets={wallets}
+        {...props}
+      />
+    </div>
   )
 }

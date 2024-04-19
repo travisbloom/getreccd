@@ -76,3 +76,10 @@ export function setLocalUserPersistedValues(values: Partial<PersistedLocalUser>)
     expires: 365,
   })
 }
+
+export function setLocalUserCurrentSessionValues(values: Partial<CurrentSessionLocalUser>) {
+  const newCurrentSession = { ...getLocalUser().currentSession, ...values }
+  Cookies.set(LOCAL_USER_CURRENT_SESSION_KEY, JSON.stringify(newCurrentSession), {
+    expires: 1,
+  })
+}

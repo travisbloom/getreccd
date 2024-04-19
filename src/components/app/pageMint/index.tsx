@@ -10,6 +10,7 @@ import { StepMint } from '@/components/app/pageMint/stepMint'
 import { StepReceiverAddress } from '@/components/app/pageMint/stepReceiverAddress'
 import { StepReceiverName } from '@/components/app/pageMint/stepReceiverName'
 import { StepSenderName } from '@/components/app/pageMint/stepSenderName'
+import { getLocalUser, setLocalUserPersistedValues } from '@/utils/web/clientLocalUser'
 
 export function PageMintForms() {
   const [finalFormValues, setFinalFormValues] = useState({
@@ -48,7 +49,20 @@ export function PageMintForms() {
     )
   }
   if (!hasMinted) {
-    return <StepMint data={finalFormValues} onSubmit={() => setHasMinted(true)} />
+    return (
+      <StepMint
+        data={finalFormValues}
+        onSubmit={() => {
+          setLocalUserPersistedValues({
+            recentRecommendationsSent: [
+              ...(getLocalUser().persisted?.recentRecommendationsSent || []),
+              finalFormValues,
+            ],
+          })
+          setHasMinted(true)
+        }}
+      />
+    )
   }
   return <StepConfirmation data={finalFormValues} />
 }

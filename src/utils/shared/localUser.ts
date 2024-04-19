@@ -1,7 +1,10 @@
+import { MintAndSendParams } from '@/thirdweb/8453/0x71b6f46fb5c9529098bfeb3afc710afe81460ac7'
+
 export interface PersistedLocalUser {
   initialSearchParams: Record<string, string>
   initialReferer?: string
   datetimeFirstSeen: string
+  recentRecommendationsSent?: MintAndSendParams[]
 }
 
 export interface CurrentSessionLocalUser {

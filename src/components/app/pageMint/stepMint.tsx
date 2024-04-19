@@ -1,17 +1,16 @@
 'use client'
 import { useState } from 'react'
+import * as Sentry from '@sentry/nextjs'
 import NextImage from 'next/image'
-import { TransactionButton, useActiveAccount } from 'thirdweb/react'
+import { TransactionButton } from 'thirdweb/react'
 
+import { useActiveAccountNormalized } from '@/hooks/useActiveAccountNormalized'
 import {
   RECOMMENDATION_NFT_IMAGE_DIMENSIONS,
   RecommendationNFTSubmissionMetadata,
 } from '@/utils/shared/nftMetadata'
 import { getReccdMintAndSendTransaction } from '@/utils/shared/thirdweb/getReccdMintAndSendTransaction'
 import { urls } from '@/utils/shared/urls'
-
-// TODO
-const logArgs = (msg: string) => (args: any) => console.log(msg, args)
 
 export function StepMint({
   onSubmit,
@@ -20,7 +19,7 @@ export function StepMint({
   onSubmit: () => void
   data: RecommendationNFTSubmissionMetadata
 }) {
-  const activeAccount = useActiveAccount()
+  const activeAccount = useActiveAccountNormalized()
   const [isSubmitting, setIsSubmitting] = useState(false)
   return (
     <div className="text-center">
@@ -36,10 +35,10 @@ export function StepMint({
         Send your recommendation
       </h1>
       <h2 className="mb-6 text-muted-foreground">
-        Submit your recommendation and your friend will receive their NFT today.
+        Mint a Proof-Of-Recommendation for {data.receiverName} below.
       </h2>
       <TransactionButton
-        onError={logArgs('onError')}
+        onError={e => Sentry.captureException(e, { tags: { domain: 'transactionButton' } })}
         onTransactionConfirmed={onSubmit}
         onTransactionSent={() => setIsSubmitting(true)}
         transaction={() => getReccdMintAndSendTransaction(data)}

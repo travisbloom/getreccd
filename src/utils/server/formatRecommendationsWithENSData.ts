@@ -3,6 +3,7 @@ import {
   UserENSData,
 } from '@/utils/server/thirdweb/getENSDataFromCryptoAddresses'
 import { RecommendationNFTMetadata } from '@/utils/shared/nftMetadata'
+import { normalizeETHAddress } from '@/utils/shared/normalizedETHAddress'
 
 export type RecommendationWithENSData = RecommendationNFTMetadata & {
   senderENSData: UserENSData | null
@@ -30,8 +31,8 @@ export function formatRecommendationsWithENSData(
       senderName: x.data_senderName!,
       description: x.data_description!,
       receiverName: x.data_receiverName!,
-      senderAddress: x.data_senderAddress!,
-      receiverAddress: x.data_receiverAddress!,
+      senderAddress: normalizeETHAddress(x.data_senderAddress!),
+      receiverAddress: normalizeETHAddress(x.data_receiverAddress!),
     }
   })
 }

@@ -1,4 +1,5 @@
 import { MaybeENSAvatar } from '@/components/app/maybeENSAvatar'
+import { MaybeRecentMint } from '@/components/app/pageProfile/recentMint'
 import { RecommendationSummary } from '@/components/app/recommendationSummary'
 import { getUsersRecommendations } from '@/data/subgraphs/getUsersRecommendations'
 import { getENSDataFromCryptoAddress } from '@/utils/server/thirdweb/getENSDataFromCryptoAddresses'
@@ -17,6 +18,7 @@ export async function PageProfile({ userAddress }: { userAddress: string }) {
           {ensData ? ensData.ensName : name || userAddress}
         </h1>
       </div>
+      <MaybeRecentMint recommendationsSent={recommendationsSent} />
       <div className="mx-auto grid max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <h2 className="mb-4 border-b-2 pb-4 text-lg">Sent</h2>
