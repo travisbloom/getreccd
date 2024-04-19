@@ -11,7 +11,7 @@ const GOLDSKY_API_KEY = requiredEnv(process.env.GOLDSKY_API_KEY, 'GOLDSKY_API_KE
 
 const API_ENDPOINT =
   CHAIN_ENVIRONMENT === 'production'
-    ? 'https://api.goldsky.com/api/private/project_clv5n6dbek7v101zj51lr5n21/subgraphs/getreccd-testing-base-sepolia/2/gn' // TODO replace
+    ? 'https://api.goldsky.com/api/private/project_clv5n6dbek7v101zj51lr5n21/subgraphs/getreccd-base/1/gn'
     : 'https://api.goldsky.com/api/private/project_clv5n6dbek7v101zj51lr5n21/subgraphs/getreccd-testing-base-sepolia/2/gn'
 export const fetchFromGoldSky = async <R, V = object>(query: string, variables?: V) => {
   logger.debug(`fetchFromGoldSky called`)
