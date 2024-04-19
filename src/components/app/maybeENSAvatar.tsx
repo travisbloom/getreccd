@@ -1,6 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
+import { ImageWithFallbackOnError } from '@/components/imageWithFallbackOnError'
 import { UserENSData } from '@/utils/server/thirdweb/getENSDataFromCryptoAddresses'
+import { deterministicArraySelection } from '@/utils/shared/deterministicArraySelection'
 import { cn } from '@/utils/web/cn'
+
+const genericImages = [
+  '/userAvatars/blue.svg',
+  '/userAvatars/green.svg',
+  '/userAvatars/orange.svg',
+  '/userAvatars/purple.svg',
+  '/userAvatars/red.svg',
+  '/userAvatars/yellow.svg',
+]
 
 export function MaybeENSAvatar({
   userAddress,
@@ -14,22 +25,22 @@ export function MaybeENSAvatar({
   if (ensData?.ensAvatarUrl) {
     return (
       <div className="inline-block overflow-hidden rounded-full">
-        <img
+        <ImageWithFallbackOnError
           alt={`ENS Avatar for ${ensData.ensName}`}
           className={cn('h-32 w-32', sharedClassName)}
+          fallbackSrc={deterministicArraySelection(genericImages, userAddress)}
           src={ensData.ensAvatarUrl}
         />
       </div>
     )
   }
   return (
-    <div
-      className={cn(
-        'inline-block flex h-32 w-32 items-center justify-center rounded-full bg-primary text-primary-foreground',
-        sharedClassName,
-      )}
-    >
-      <div>{`${userAddress.slice(0, 2)}...${userAddress.slice(-5)}`}</div>
+    <div className="inline-block overflow-hidden rounded-full">
+      <img
+        alt="Generic profile picture for anonymous user"
+        className={cn('h-32 w-32', sharedClassName)}
+        src={deterministicArraySelection(genericImages, userAddress)}
+      />
     </div>
   )
 }
