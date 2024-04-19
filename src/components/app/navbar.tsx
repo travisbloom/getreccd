@@ -18,19 +18,19 @@ export function Navbar() {
               d="M3 50.5862L46.2931 3L89.5862 50.5862L46.2931 99.2069L3 50.5862Z"
               fill="white"
               stroke="black"
-              stroke-width="3.2069"
+              strokeWidth="3.2069"
             />
             <path
               d="M51.1035 50.5862L94.3966 3L137.69 50.5862L94.3966 99.2069L51.1035 50.5862Z"
               fill="white"
               stroke="black"
-              stroke-width="4"
+              strokeWidth="4"
             />
             <path
               d="M102.414 50.5862L145.707 3L189 50.5862L145.707 99.2069L102.414 50.5862Z"
               fill="white"
               stroke="black"
-              stroke-width="4"
+              strokeWidth="4"
             />
           </svg>
         </div>
