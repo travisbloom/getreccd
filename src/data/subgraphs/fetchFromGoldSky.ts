@@ -3,7 +3,7 @@ import 'server-only'
 import { fetchReq } from '@/utils/shared/fetchReq'
 import { getLogger } from '@/utils/shared/logger'
 import { requiredEnv } from '@/utils/shared/requiredEnv'
-import { CHAIN_ENVIRONMENT, NEXT_PUBLIC_ENVIRONMENT } from '@/utils/shared/sharedEnv'
+import { CHAIN_ENVIRONMENT } from '@/utils/shared/sharedEnv'
 
 const logger = getLogger('fetchFromGoldSky')
 

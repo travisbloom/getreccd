@@ -5,13 +5,13 @@ import type { Metadata, Viewport } from 'next'
 
 import { Footer } from '@/components/app/footer'
 import { Navbar } from '@/components/app/navbar'
+import { RootLayout } from '@/components/app/rootLayout'
 import { TopLevelClientLogic } from '@/components/app/topLevelClientLogic'
 import { FullHeight } from '@/components/ui/fullHeight'
 import { PageProps } from '@/types'
 import { getOpenGraphImageUrl } from '@/utils/server/generateOpenGraphImageUrl'
 import { generateMetadataDetails } from '@/utils/server/metadataUtils'
 import { NEXT_PUBLIC_ENVIRONMENT } from '@/utils/shared/sharedEnv'
-import { fontClassName } from '@/utils/web/fonts'
 
 const title = `${
   NEXT_PUBLIC_ENVIRONMENT === 'production'
@@ -51,16 +51,14 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: PageProps & { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={fontClassName}>
-        <TopLevelClientLogic>
-          <FullHeight.Container>
-            <Navbar />
-            <FullHeight.Content>{children}</FullHeight.Content>
-            <Footer />
-          </FullHeight.Container>
-        </TopLevelClientLogic>
-      </body>
-    </html>
+    <RootLayout>
+      <TopLevelClientLogic>
+        <FullHeight.Container>
+          <Navbar />
+          <FullHeight.Content className="px-4 py-8">{children}</FullHeight.Content>
+          <Footer />
+        </FullHeight.Container>
+      </TopLevelClientLogic>
+    </RootLayout>
   )
 }

@@ -1,32 +1,20 @@
-import { MintNFTButton } from '@/components/app/mintNFTButton'
-import { SignInButton } from '@/components/app/signInButton'
-import { getRecentTransactions } from '@/data/subgraphs/getRecentTransactions'
+import { Button } from '@/components/ui/button'
+import { InternalLink } from '@/components/ui/link'
+import { urls } from '@/utils/shared/urls'
 
 export async function PageHome() {
-  const data = await getRecentTransactions()
   return (
-    <div className="flex h-dvh w-dvw items-center justify-center bg-black text-white">
+    <div className="flex flex-1 items-center justify-center">
       <div className="space-y-6">
-        <h1 className="text-4xl font-bold text-purple-600">Get Recc'd</h1>
+        <h1 className="font-mono text-3xl font-bold sm:text-4xl">Send onchain recommendations</h1>
+        <h2 className="text-muted-foreground">
+          Endorse the people you respect onchain by sending them Proof-Of-Recommendation NFT.
+        </h2>
         <div>
-          <SignInButton />
+          <Button asChild>
+            <InternalLink href={urls.mint()}>Send a recommendation</InternalLink>
+          </Button>
         </div>
-        <div>
-          <MintNFTButton />
-        </div>
-        <ul className="space-y-10">
-          {data.map(item => (
-            <li key={item.tokenId}>
-              <div>
-                Sender: {item.data_senderAddress}: {item.data_senderName}
-              </div>
-              <div>
-                Receiver: {item.data_receiverAddress}: {item.data_receiverName}
-              </div>
-              <div>Description: {item.data_description}</div>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   )

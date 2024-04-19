@@ -1,4 +1,4 @@
-import { Open_Sans } from 'next/font/google'
+import { Orbitron } from 'next/font/google'
 import localFont from 'next/font/local'
 
 export const satoshiFont = localFont({
@@ -9,9 +9,7 @@ export const satoshiFont = localFont({
   variable: '--font-satoshi',
 })
 
-export const openSansFont = Open_Sans({
+export const orbitronFont = Orbitron({
   subsets: ['latin'],
-  variable: '--font-open-sans',
+  variable: '--orbitron',
 })
-
-export const fontClassName = [satoshiFont.variable, openSansFont.variable].join(' ')

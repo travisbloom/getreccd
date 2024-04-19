@@ -1,9 +1,8 @@
 'use client'
 
 import { ErrorPagesContent } from '@/components/app/errorPagesContent'
+import { RootLayout } from '@/components/app/rootLayout'
 import { useHandlePageError } from '@/hooks/useHandlePageError'
-import { cn } from '@/utils/web/cn'
-import { fontClassName } from '@/utils/web/fonts'
 
 export const dynamic = 'error'
 
@@ -21,10 +20,8 @@ export default function GlobalErrorPage({
   })
 
   return (
-    <html lang="en">
-      <body className={cn(fontClassName, 'flex h-screen content-center items-center')}>
-        <ErrorPagesContent reset={reset} />
-      </body>
-    </html>
+    <RootLayout>
+      <ErrorPagesContent reset={reset} />
+    </RootLayout>
   )
 }

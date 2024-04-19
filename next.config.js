@@ -5,16 +5,32 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const isDev = process.env.NEXT_PUBLIC_ENVIRONMENT === 'local'
 
+function getSiteImageRemotePattern() {
+  switch (process.env.NEXT_PUBLIC_ENVIRONMENT) {
+    case 'local':
+      return {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+      }
+    case 'testing':
+      return {
+        protocol: 'https',
+        hostname: 'testing.getreccd.com',
+      }
+    default:
+      return {
+        protocol: 'https',
+        hostname: 'www.getreccd.com',
+      }
+  }
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     unoptimized: false,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'euc.li',
-      },
-    ],
+    remotePatterns: [getSiteImageRemotePattern()],
   },
 }
 
