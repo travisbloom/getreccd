@@ -1,6 +1,5 @@
 .overlay {
   position: static;
-  @apply text-fontcolor;
 }
 
 .overlay::before {

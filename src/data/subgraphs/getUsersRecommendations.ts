@@ -20,6 +20,7 @@ export async function getUsersRecommendations(args: GetUsersRecommendationsQuery
           orderDirection: desc
           where: { data_senderAddress: $userAddress }
         ) {
+          id
           tokenId
           data_senderName
           data_description
@@ -32,6 +33,7 @@ export async function getUsersRecommendations(args: GetUsersRecommendationsQuery
           orderDirection: desc
           where: { data_receiverAddress: $userAddress }
         ) {
+          id
           tokenId
           data_senderName
           data_description

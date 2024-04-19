@@ -25,8 +25,9 @@ export const fullUrl = (path: string) => {
 export const urls = {
   mint: () => '/mint',
   home: () => '/',
+  activity: () => '/activity',
   profile: (address: string) => `/profile/${address}`,
-  recommendation: (tokenId: number) => `/recommendation/${tokenId}`,
-  mockNFTImage: (props: Omit<RecommendationNFTMetadata, 'tokenId'>) =>
-    `/nft/recommendation/v1/mock/${encodeObjectForUrl({ ...props, tokenId: 1 })}`,
+  recommendation: (id: string) => `/recommendation/${id}`,
+  mockNFTImage: (props: Omit<RecommendationNFTMetadata, 'tokenId' | 'id'>) =>
+    `/nft/recommendation/v1/mock/${encodeObjectForUrl({ ...props, tokenId: 1, id: 'mockId' })}`,
 }

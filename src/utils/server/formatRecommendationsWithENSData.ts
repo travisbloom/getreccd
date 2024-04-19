@@ -12,6 +12,7 @@ export type RecommendationWithENSData = RecommendationNFTMetadata & {
 
 export function formatRecommendationsWithENSData(
   recommendations: {
+    id: string | undefined | null
     tokenId: number | undefined | null
     data_senderName: string | undefined | null
     data_description: string | undefined | null
@@ -27,6 +28,7 @@ export function formatRecommendationsWithENSData(
     return {
       senderENSData,
       receiverENSData,
+      id: x.id!,
       tokenId: x.tokenId!,
       senderName: x.data_senderName!,
       description: x.data_description!,

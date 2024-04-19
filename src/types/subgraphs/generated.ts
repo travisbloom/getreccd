@@ -878,6 +878,7 @@ export type GetRecentRecommendationsQuery = {
   __typename?: 'Query'
   recent: Array<{
     __typename?: 'Recommended'
+    id: string
     tokenId: number | null | undefined
     data_senderName: string | null | undefined
     data_description: string | null | undefined
@@ -885,6 +886,27 @@ export type GetRecentRecommendationsQuery = {
     data_senderAddress: string | null | undefined
     data_receiverAddress: string | null | undefined
   }>
+}
+
+export type GetRecommendationQueryVariables = Exact<{
+  id: Scalars['ID']['input']
+}>
+
+export type GetRecommendationQuery = {
+  __typename?: 'Query'
+  recommended:
+    | {
+        __typename?: 'Recommended'
+        id: string
+        tokenId: number | null | undefined
+        data_senderName: string | null | undefined
+        data_description: string | null | undefined
+        data_receiverName: string | null | undefined
+        data_senderAddress: string | null | undefined
+        data_receiverAddress: string | null | undefined
+      }
+    | null
+    | undefined
 }
 
 export type GetUsersRecommendationsQueryVariables = Exact<{
@@ -895,6 +917,7 @@ export type GetUsersRecommendationsQuery = {
   __typename?: 'Query'
   recommendationsSent: Array<{
     __typename?: 'Recommended'
+    id: string
     tokenId: number | null | undefined
     data_senderName: string | null | undefined
     data_description: string | null | undefined
@@ -904,6 +927,7 @@ export type GetUsersRecommendationsQuery = {
   }>
   recommendationsReceived: Array<{
     __typename?: 'Recommended'
+    id: string
     tokenId: number | null | undefined
     data_senderName: string | null | undefined
     data_description: string | null | undefined
