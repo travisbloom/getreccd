@@ -16,12 +16,14 @@ function getSiteImageRemotePattern() {
     case 'testing':
       return {
         protocol: 'https',
-        hostname: 'testing.getreccd.com',
+        hostname: '**.getreccd.com',
+        port: '',
       }
     default:
       return {
         protocol: 'https',
-        hostname: 'www.getreccd.com',
+        hostname: '**.getreccd.com',
+        port: '',
       }
   }
 }
