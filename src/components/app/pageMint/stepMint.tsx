@@ -7,8 +7,8 @@ import {
   RECOMMENDATION_NFT_IMAGE_DIMENSIONS,
   RecommendationNFTSubmissionMetadata,
 } from '@/utils/shared/nftMetadata'
+import { getReccdMintAndSendTransaction } from '@/utils/shared/thirdweb/getReccdMintAndSendTransaction'
 import { urls } from '@/utils/shared/urls'
-import { getReccdMintAndSendTransaction } from '@/utils/web/thirdweb/getReccdMintAndSendTransaction'
 
 // TODO
 const logArgs = (msg: string) => (args: any) => console.log(msg, args)

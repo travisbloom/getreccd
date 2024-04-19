@@ -12,7 +12,6 @@ import {
   RECOMMENDATION_NFT_IMAGE_DIMENSIONS,
   RecommendationNFTMetadata,
 } from '@/utils/shared/nftMetadata'
-import { fullUrl } from '@/utils/shared/urls'
 
 const logo = (
   <svg fill="none" height="38" viewBox="0 0 88 19" width="172" xmlns="http://www.w3.org/2000/svg">

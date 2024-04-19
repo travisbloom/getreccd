@@ -1,19 +1,19 @@
 {
-    "name": "Get Recc'd",
-    "short_name": "Get Recc'd",
-    "icons": [
-        {
-            "src": "/logo/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/logo/android-chrome-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#120703",
-    "background_color": "#120703",
-    "display": "standalone"
+  "name": "Get Recc'd",
+  "short_name": "Get Recc'd",
+  "icons": [
+    {
+      "src": "/logo/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#120703",
+  "background_color": "#120703",
+  "display": "standalone"
 }

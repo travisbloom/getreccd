@@ -2,8 +2,8 @@
 import { ConnectButton, ConnectButtonProps } from 'thirdweb/react'
 import { createWallet, walletConnect } from 'thirdweb/wallets'
 
+import { thirdwebClient } from '@/utils/shared/thirdweb/client'
 import { ACTIVE_CHAIN } from '@/utils/web/activeChain'
-import { thirdwebClient } from '@/utils/web/thirdweb/client'
 
 const wallets = [createWallet('com.coinbase.wallet'), createWallet('io.metamask'), walletConnect()]
 
