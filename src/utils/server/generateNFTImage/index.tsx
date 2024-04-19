@@ -75,7 +75,7 @@ export async function generateNFTImage(metadata: RecommendationNFTMetadata) {
             <div tw="relative left-right flex">
               {receiverAvatar ? (
                 <div tw="overflow-hidden rounded-full flex">
-                  <img alt="logo" src={senderAvatar} tw="w-52 h-52" />
+                  <img alt="logo" src={receiverAvatar} tw="w-52 h-52" />
                 </div>
               ) : (
                 <div tw="w-52 flex h-52 bg-slate-300 overflow-hidden rounded-full border border-slate-800 items-center justify-center">
