@@ -12,18 +12,22 @@ const wallets = [createWallet('com.coinbase.wallet'), createWallet('io.metamask'
 
 export function SignInButton(props: Partial<ConnectButtonProps>) {
   const account = useActiveAccountNormalized()
+
   return (
     <div>
       <ConnectButton
         chain={ACTIVE_CHAIN}
         client={thirdwebClient}
         connectButton={{
-          className: 'max-sm:!p-1 max-sm:!text-md',
+          className: 'max-sm:!p-2 max-sm:!text-md',
         }}
         connectModal={{
           size: 'compact',
           titleIcon: 'https://www.getreccd.com/favicon.ico',
           showThirdwebBranding: false,
+        }}
+        detailsButton={{
+          className: 'max-sm:!text-md max-sm:!min-w-5',
         }}
         detailsModal={{
           hideSwitchToPersonalWallet: true,
@@ -42,7 +46,7 @@ export function SignInButton(props: Partial<ConnectButtonProps>) {
             ),
         }}
         switchButton={{
-          className: 'max-sm:!p-1 max-sm:!text-md',
+          className: 'max-sm:!p-2 max-sm:!text-md',
         }}
         theme={'dark'}
         wallets={wallets}

@@ -58,3 +58,6 @@
     @apply bg-background text-foreground;
   }
 }
+.tw-connected-wallet__address {
+  @apply max-sm:!max-w-14 max-sm:!truncate;
+}

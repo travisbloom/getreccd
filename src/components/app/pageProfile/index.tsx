@@ -14,11 +14,11 @@ export async function PageProfile({ userAddress }: { userAddress: string }) {
     <div>
       <div className="mb-12 text-center">
         {ensData ? <MaybeENSAvatar ensData={ensData} userAddress={userAddress} /> : null}
-        <h1 className="text-2xl text-purple-400">
+        <h1 className="font-mono text-2xl text-purple-400">
           {ensData ? ensData.ensName : name || userAddress}
         </h1>
       </div>
-      <MaybeRecentMint recommendationsSent={recommendationsSent} />
+      <MaybeRecentMint recommendationsSent={recommendationsSent} userAddress={userAddress} />
       <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <h2 className="mb-4 border-b-2 pb-4 text-lg">Sent</h2>

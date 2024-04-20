@@ -1,5 +1,6 @@
 'use client'
 import { RocketIcon } from 'lucide-react'
+import { useActiveAccount } from 'thirdweb/react'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useHasHydrated } from '@/hooks/useHasHydrated'
@@ -8,9 +9,12 @@ import { RecommendationWithENSData } from '@/utils/server/formatRecommendationsW
 
 export function MaybeRecentMint({
   recommendationsSent,
+  userAddress,
 }: {
+  userAddress: string
   recommendationsSent: RecommendationWithENSData[]
 }) {
+  const account = useActiveAccount()
   const hydrated = useHasHydrated()
   const localUser = useLocalUser()
   const recentMints =
@@ -22,7 +26,7 @@ export function MaybeRecentMint({
           rec.receiverName !== x.receiverName,
       )
     }) || []
-  if (!recentMints.length || !hydrated) {
+  if (!recentMints.length || !hydrated || !account || userAddress !== account.address) {
     return null
   }
   return (
@@ -30,7 +34,7 @@ export function MaybeRecentMint({
       <RocketIcon className="h-4 w-4" />
       <AlertTitle>Pending recommendations</AlertTitle>
       <AlertDescription>
-        You recently send some recommendations onchain. Once they're fully confirmed they'll show up
+        You recently sent some recommendations onchain. Once they're fully confirmed they'll show up
         here.
       </AlertDescription>
     </Alert>
