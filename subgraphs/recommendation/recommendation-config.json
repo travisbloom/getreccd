@@ -10,8 +10,8 @@
   "instances": [
     {
       "abi": "recommendations",
-      "address": "0x71B6f46Fb5c9529098bfEb3afC710aFE81460AC7",
-      "startBlock": 13348595,
+      "address": "0xc984fB30bA5f139CB84d2a4308bc092605e15F55",
+      "startBlock": 13391008,
       "chain": "base"
     }
   ]
