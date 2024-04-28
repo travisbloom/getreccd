@@ -1,6 +1,8 @@
 'use client'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { isNil } from 'lodash-es'
+import { resolveAddress } from 'thirdweb/extensions/ens'
 import { object, z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -13,10 +15,16 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { zodEthereumAddress } from '@/validation/ethAddress'
+import { normalizeETHAddress } from '@/utils/shared/normalizedETHAddress'
+import { thirdwebClient } from '@/utils/shared/thirdweb/client'
+import {
+  ZOD_ETH_ADDRESS_OR_ENS_ERROR_MESSAGE,
+  zodEthereumAddress,
+  zodEthereumAddressOrENS,
+} from '@/validation/ethAddress'
 
 const formSchema = object({
-  receiverAddress: zodEthereumAddress,
+  receiverAddress: zodEthereumAddressOrENS,
 })
 
 export function StepReceiverAddress({
@@ -33,7 +41,27 @@ export function StepReceiverAddress({
 
   return (
     <Form {...form}>
-      <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        className="w-full"
+        onSubmit={form.handleSubmit(async values => {
+          const isEthAddress = zodEthereumAddress.safeParse(values.receiverAddress).success
+          if (isEthAddress) {
+            return onSubmit(values)
+          }
+          const ensAddress: string | null = await resolveAddress({
+            client: thirdwebClient,
+            name: values.receiverAddress,
+          }).catch(() => {
+            form.setError('receiverAddress', {
+              message: ZOD_ETH_ADDRESS_OR_ENS_ERROR_MESSAGE,
+            })
+            return null
+          })
+          if (!isNil(ensAddress)) {
+            onSubmit({ receiverAddress: normalizeETHAddress(ensAddress) })
+          }
+        })}
+      >
         <div>
           <FormField
             control={form.control}
@@ -42,14 +70,14 @@ export function StepReceiverAddress({
               <FormItem>
                 <FormLabel>
                   <h1 className="mb-2 font-mono text-2xl font-bold text-foreground sm:text-3xl">
-                    What's their ETH Address?
+                    What's their ETH Address or ENS?
                   </h1>
                   <h2 className="mb-6 text-muted-foreground">
-                    Enter the ETH Address of the person you're recommending
+                    Enter the ETH Address or ENS of the person you're recommending
                   </h2>
                 </FormLabel>
                 <FormControl className="mb-2">
-                  <Input placeholder="0x954C3DC7C759d17F040e1080fA74A593bD34e79B" {...field} />
+                  <Input placeholder="tbloom.eth" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
