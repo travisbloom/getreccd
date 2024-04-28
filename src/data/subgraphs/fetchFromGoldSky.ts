@@ -19,8 +19,11 @@ export const fetchFromGoldSky = async <R, V = object>(query: string, variables?:
   logger.debug(`fetchFromGoldSky called`)
   function attempt() {
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 5000)
+    const timeoutId = setTimeout(() => {
+      controller.abort()
+    }, 5000)
     return fetchReq(API_ENDPOINT, {
+      signal: controller.signal,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
