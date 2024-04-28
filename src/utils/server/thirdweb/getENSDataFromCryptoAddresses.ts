@@ -3,6 +3,7 @@ import { compact } from 'lodash-es'
 
 import { formatENSAvatar } from '@/utils/server/formatENSAvatar'
 import { ethRPCClient } from '@/utils/server/thirdweb/thirdwebRPCClients'
+import { getLogger } from '@/utils/shared/logger'
 import { stringToEthereumAddress } from '@/utils/shared/stringToEthereumAddress'
 
 const client = ethRPCClient
@@ -11,6 +12,8 @@ export interface UserENSData {
   ensName: string
   ensAvatarUrl: string | null
 }
+
+const logger = getLogger('getENSDataMapFromCryptoAddresses')
 
 export async function getENSDataMapFromCryptoAddresses(
   _addresses: string[],
@@ -24,6 +27,7 @@ export async function getENSDataMapFromCryptoAddresses(
       }),
     ),
   )
+  logger.info('nameResult')
   const addressesWithENS = nameResult
     .map((result, index) => ({
       cryptoAddress: addresses[index],
@@ -37,6 +41,7 @@ export async function getENSDataMapFromCryptoAddresses(
       }),
     ),
   )
+  logger.info('records')
   return addressesWithENS.reduce(
     (acc, { cryptoAddress, ensName }, index) => {
       const avatar = records[index]

@@ -16,12 +16,12 @@ const API_ENDPOINT =
     ? 'https://api.goldsky.com/api/private/project_clv5n6dbek7v101zj51lr5n21/subgraphs/getreccd-base/2/gn'
     : 'https://api.goldsky.com/api/private/project_clv5n6dbek7v101zj51lr5n21/subgraphs/getreccd-testing-base-sepolia/2/gn'
 export const fetchFromGoldSky = async <R, V = object>(query: string, variables?: V) => {
-  logger.debug(`fetchFromGoldSky called`)
+  logger.info(`fetchFromGoldSky called`)
   function attempt() {
     const controller = new AbortController()
     const timeoutId = setTimeout(() => {
       controller.abort()
-    }, 5000)
+    }, 0)
     return fetchReq(API_ENDPOINT, {
       signal: controller.signal,
       method: 'POST',
@@ -50,7 +50,7 @@ export const fetchFromGoldSky = async <R, V = object>(query: string, variables?:
     retries: 3,
   })
 
-  logger.debug(`fetchFromGoldSky returned with status ${response.status}`)
+  logger.info(`fetchFromGoldSky returned with status ${response.status}`)
   const json = (await response.json()) as { data: R } | { errors: any[] }
   if ('errors' in json) {
     throw new Error(`fetchFromGoldSky threw with ${JSON.stringify(json.errors)}`)

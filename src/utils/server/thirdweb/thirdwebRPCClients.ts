@@ -12,6 +12,7 @@ export const ethRPCClient = createPublicClient({
     batch: {
       wait: 100,
     },
+    timeout: 4000,
     fetchOptions: { headers },
   }),
 })
@@ -24,6 +25,7 @@ export const baseRPCClient =
           batch: {
             wait: 100,
           },
+          timeout: 4000,
           fetchOptions: { headers },
         }),
       })
@@ -33,6 +35,7 @@ export const baseRPCClient =
           batch: {
             wait: 100,
           },
+          timeout: 4000,
           fetchOptions: { headers },
         }),
       })
