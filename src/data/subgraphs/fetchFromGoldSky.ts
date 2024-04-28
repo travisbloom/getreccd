@@ -21,7 +21,7 @@ export const fetchFromGoldSky = async <R, V = object>(query: string, variables?:
     const controller = new AbortController()
     const timeoutId = setTimeout(() => {
       controller.abort()
-    }, 0)
+    }, 4000)
     return fetchReq(API_ENDPOINT, {
       signal: controller.signal,
       method: 'POST',
