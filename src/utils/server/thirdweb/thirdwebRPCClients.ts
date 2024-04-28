@@ -8,7 +8,7 @@ const headers = { 'x-secret-key': THIRD_WEB_CLIENT_SECRET }
 
 export const ethRPCClient = createPublicClient({
   chain: mainnet,
-  transport: http('https://ethereum.rpc.thirdweb.com', {
+  transport: http('https://1.rpc.thirdweb.com', {
     batch: {
       wait: 100,
     },
@@ -21,7 +21,7 @@ export const baseRPCClient =
   CHAIN_ENVIRONMENT === 'production'
     ? createPublicClient({
         chain: base,
-        transport: http('https://base.rpc.thirdweb.com', {
+        transport: http('https://8453.rpc.thirdweb.com', {
           batch: {
             wait: 100,
           },
