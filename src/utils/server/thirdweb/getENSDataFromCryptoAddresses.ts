@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/nextjs'
 import { compact } from 'lodash-es'
+import { normalize } from 'viem/ens'
 
 import { formatENSAvatar } from '@/utils/server/formatENSAvatar'
 import { ethRPCClient } from '@/utils/server/thirdweb/thirdwebRPCClients'
@@ -37,7 +38,7 @@ export async function getENSDataMapFromCryptoAddresses(
   const records = await Promise.all(
     addressesWithENS.map(address =>
       client.getEnsAvatar({
-        name: address.ensName!,
+        name: normalize(address.ensName!),
       }),
     ),
   )
